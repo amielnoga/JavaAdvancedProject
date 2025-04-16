@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- documentation.xhtml -->
+<!-- Documentation page of the Adopet web application -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+
+<h:head>
+    <title>Adopet Documentation</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body styleClass="doc-page">
+
+    <h:panelGroup layout="block" styleClass="top-bar">
+        <h:graphicImage name="logo_only.png" library="images" styleClass="logo" height="55px" alt="Logo"/>
+        <h:outputLink value="home.xhtml" styleClass="adopet-button">BACK TO ADOPET</h:outputLink>
+    </h:panelGroup>
+
+    <h:outputText value="Documentation " styleClass="title"/>
+    <h:outputText value="Welcome to our documentation portal, here you can find everything you need to complete your onboarding and
+            make the most out of Adopet!"/>
+
+    <h:panelGroup layout="block" styleClass="section-wrapper">
+        <h:panelGroup layout="block" styleClass="doc-section">
+            <h:outputText value="Getting Started" styleClass="sub-title"/>
+            <h:outputLink value="signupUserGuide.xhtml" styleClass="user-guide-link">Sign Up</h:outputLink>
+            <h:outputLink value="loginUserGuide.xhtml" styleClass="user-guide-link">Login</h:outputLink>
+            <h:outputLink value="userProfileUserGuide.xhtml" styleClass="user-guide-link">User Profile</h:outputLink>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="doc-section">
+            <h:outputText value="Adoption" styleClass="sub-title"/>
+
+            <h:outputLink value="homeUserGuide.xhtml" styleClass="user-guide-link">Home Page </h:outputLink>
+            <h:outputLink value="boardUserGuide.xhtml" styleClass="user-guide-link">Adoption Board</h:outputLink>
+            <h:outputLink value="adoptedUserGuide.xhtml" styleClass="user-guide-link">Adopted with Love</h:outputLink>
+            <h:outputLink value="addNewPetUserGuide.xhtml" styleClass="user-guide-link">Add a New Pet</h:outputLink>
+            <h:outputLink value="myPetsUserGuide.xhtml" styleClass="user-guide-link">My Pets</h:outputLink>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="doc-section">
+            <h:outputText value="Company" styleClass="sub-title"/>
+
+            <h:outputLink value="aboutUserGuide.xhtml" styleClass="user-guide-link">About Us</h:outputLink>
+            <h:outputLink value="qaUserGuide.xhtml" styleClass="user-guide-link">Q/A</h:outputLink>
+            <h:outputLink value="contactUserGuide.xhtml" styleClass="user-guide-link">Contact Us</h:outputLink>
+        </h:panelGroup>
+    </h:panelGroup>
+</h:body>
+</html>

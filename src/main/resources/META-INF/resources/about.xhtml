@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!-- about Us page-->
+<h:head>
+    <title>Adopet | About Us</title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<body>
+<!--    navigation bar-->
+<ui:include src="navbar.xhtml"/>
+<div class="main-page">
+    <h3 class="main-header"> About Us </h3>
+    <div class="about-us-wrapper">
+        <p> Welcome to Adopet, where three passionate students have teamed up to make the world a better place—one paw at a time!
+            <br/>
+            We’re a trio of tech-loving, pet-obsessed students who believe that every animal deserves a loving home.
+        </p>
+    </div>
+    <div class="developers-container">
+        <div class="developers-box">
+            <img src="#{resource['images/eitan.jpeg']}" alt="Eitan" class="about-us-pictures"/>
+            <h4> Eitan Kot</h4>
+            <p> A co-owner of an old hamster, which is a bit shy to take pictures</p>
+        </div>
+        <div class="developers-box">
+            <img src="#{resource['images/noga.jpg']}" alt="Noga" class="about-us-pictures"/>
+            <h4> Noga Amiel</h4>
+            <p> A proud owner of two beautiful and smart dogs - Heidi and Takk</p>
+        </div>
+        <div class="developers-box">
+            <img src="#{resource['images/yuval.jpg']}" alt="Yuval" class="about-us-pictures"/>
+            <h4> Yuval Ofir</h4>
+            <p> A mother of a 6 years old spoiled fluffy cat - Tzachi</p>
+        </div>
+    </div>
+
+
+    <div class="about-us-wrapper">
+        <h4 class="main-header"> Our mission? </h4>
+        <p> To connect adorable, adoptable pets with their future best friends (that’s you!). <br/>
+            With our background in online security, software development, and a shared love for all things furry, we’ve built a safe,
+            <br/> user-friendly platform that makes pet adoption easier, smarter, and more heartwarming than ever.
+        </p>
+    </div>
+    <div class="about-us-wrapper">
+        <h4 class="main-header"> Why did we start this?</h4>
+        <p> Because we know that a wagging tail or a happy purr can change lives. <br/>
+            And because, let’s be honest, the world could use more paws and less problems.
+            <br/> And because, let's be extra honest, this is our final project in Advanced Java Course.
+            <br/> <br/>
+            Join us in creating happy endings—one adoption at a time! 🐶🐱💙
+        </p>
+    </div>
+
+    <div class="about-us-wrapper">
+        <h4 class="main-header"> Prepare to fall in love!
+            Eitan, Noga &amp; Yuval</h4>
+    </div>
+
+</div>
+<!--footer -->
+<ui:include src="footer.xhtml"/>
+</body>
+</html>

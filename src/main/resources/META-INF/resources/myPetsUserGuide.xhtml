@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- myPetsUserGuide.xhtml -->
+<!-- Display user guide for the My Pets page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="My Pets User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to use the My Pets webpage."/>
+    <h:graphicImage name="applicationScreenshots/myPetsScreenshot.png" library="images"
+                    alt="myPetsScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you will find all the pets you have added to the Adopet platform."/>
+    <br/>
+    <h:outputText value="You can edit any pet's information by clicking on the pet box."/>
+    <h:graphicImage name="applicationScreenshots/myPetsEditScreenshot.png" library="images"
+                    alt="myPetsEditScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="You can also change a pet's adoption status to move its ad from the adoption board to Adopted
+    With Love and vice versa."/>
+    <br/>
+
+    <h:outputText value="Additionally, you have the option to delete a pet from the Adopet platform by clicking the
+            'Delete' button."/>
+
+</h:body>
+</html>

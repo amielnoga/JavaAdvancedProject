@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- loginUserGuide.xhtml -->
+<!-- Display user guide for the sign in page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="Sign In User Guide" styleClass="title"/>
+    <h:outputText
+            value=" This article is for users who want to sign in to Adopet (only registered users can post a pet for adoption)."/>
+    <br/>
+    <h:outputText value="This option is only available to users who have already signed up for Adopet."/>
+    <br/>
+    <h:outputText value="Don't have an account? Click the 'Sign up' button to create one."/>
+    <h:graphicImage name="applicationScreenshots/SignInScreenshot.png" library="images"
+                    alt="SignIn Screenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you will find a sign-in form for Adopet."/>
+    <br/>
+    <h:outputText value=" Please enter your username and password, then click the 'Login' button."/>
+</h:body>
+
+</html>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewAction action="#{UserBean.checkLoginRedirect}"/>
+</f:metadata>
+<!--set up photo - after editing a pet, or when updating an existing pet-->
+<h:head>
+    <title>Adopet | Add a Pet</title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+    <div class="main-content">
+        <div class="addpet-wrapper">
+            <div class="addpet-container">
+                <h3> Add a new Pet to Adopet </h3>
+                <h4> Add a photo for your sweet creature </h4>
+
+                <h:form enctype="multipart/form-data" id="uploadForm">
+                    <h:panelGrid columns="1">
+                        <label for="fileInput"> Choose a photo: </label>
+                        <input type="file" id="fileInput" name="file" accept="image/png, image/jpeg, image/jpg"/>
+                        <h:commandButton value="Submit Photo" styleClass="button">
+                            <f:ajax onevent="submitFile"/>
+                        </h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+                <!--Using JavaScript for uploading the image-->
+                <h:outputScript>
+                    function getIdFromUrl() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        return urlParams.get("id");
+                    }
+
+                    function submitFile(data) {
+                        if (data.status === 'success') {
+                            const form = document.getElementById('uploadForm');
+                            const formData = new FormData(form);
+                            const petId = getIdFromUrl();
+                            if (!petId) {
+                                alert("Pet ID is not in the URL!");
+                                return;
+                            }
+                            const fileInput = document.getElementById('fileInput');
+                            const file = fileInput.files[0];
+                            if (!file) {
+                                alert("Please select a file!");
+                                return;
+                            }
+                            const MAX_FILE_SIZE = 3.5 * 1024 * 1024; // 3.5MB in bytes
+
+                            if (file.size > MAX_FILE_SIZE) {
+                                alert("File too large! Please select an image smaller than 3.5MB.");
+                                return;
+                            }
+
+                            const mimeType = file.type;
+                            formData.append("mimeType", mimeType);
+
+                            fetch('/pets/' + petId + '/upload', {
+                                method: 'POST',
+                                body: formData
+                            }).then(response => {
+                                if (response.ok) {
+                                    window.location.href = "myPets.xhtml";
+                                    alert("Upload successful!");
+                                } else {
+                                    return response.text()
+                                            .then(text => {
+                                                alert("Upload failed: " + text);
+                                            });
+                                }
+                            }).catch(error => alert('we got an error: ' + error));
+                        }
+                    }
+                </h:outputScript>
+
+            </div>
+        </div>
+    </div>
+
+    <!--    Footer-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

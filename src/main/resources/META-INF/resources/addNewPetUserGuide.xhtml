@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- addNewPetUserGuide.xhtml -->
+<!-- Display user guide for the Add a New Pet page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="Add a New Pet User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to add a new pet for adoption on the Adopet platform."/>
+    <br/>
+    <h:outputText value="This section is valid only for registered users."/>
+    <h:graphicImage name="applicationScreenshots/newPetScreenshot.png" library="images" alt="newPetScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you can add a new pet by filling in all the pet information. Click on the submit button
+     to open the photo upload section. After choosing a photo, don't forget to click the 'Submit Photo' button to make
+     the pet available for adoption and display it on the Adoption Board."/>
+    <h:graphicImage name="applicationScreenshots/newPetPhotoScreenshot.png" library="images" alt="newPetPhotoScreenshot"
+                    styleClass="screenshot"/>
+</h:body>
+
+</html>

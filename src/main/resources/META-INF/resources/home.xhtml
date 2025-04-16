@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- home.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<!--Home page of the website-->
+<h:head>
+    <title>Adopet | Homepage</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <h:messages id="flashMessages" globalOnly="true" layout="table" styleClass="success-message"
+                rendered="#{facesContext.maximumSeverity.ordinal lt 2}"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+
+    <div class="main-page">
+        <img src="#{resource['images/adopet.png']}" alt="Adopet" height="40px"/>
+        <h3> Find your new best friend </h3>
+        <h4> Browse pets for adoption from our website, all over the country </h4>
+        <div class="home-wrapper">
+            <h:form>
+                <h:commandLink action="#{PetBean.makeFilterRequest('Dog')}" styleClass="animal-box">
+                    <f:setPropertyActionListener target="#{PetBean.type}" value="DOG" />
+
+                    <p> Dogs </p>
+                    <img src="#{resource['/images/dog-logo.png']}" alt="Dogs"/>
+                </h:commandLink>
+            </h:form>
+            <h:form>
+                <h:commandLink action="#{PetBean.makeFilterRequest('Cat')}"  styleClass="animal-box">
+                    <f:setPropertyActionListener target="#{PetBean.type}" value="CAT" />
+                    <p> Cats </p>
+                    <img src="#{resource['images/cat-logo.png']}" alt="Cats"/>
+                </h:commandLink>
+            </h:form>
+            <h:form>
+                <h:commandLink action="#{PetBean.makeFilterRequest('Rabbit')}" styleClass="animal-box">
+                    <f:setPropertyActionListener target="#{PetBean.type}" value="RABBIT" />
+                    <p> Rabbits </p>
+                    <img src="#{resource['/images/rabbit-logo.png']}" alt="Rabbits"/>
+                </h:commandLink>
+            </h:form>
+            <h:form>
+                <h:commandLink action="#{PetBean.makeFilterRequest('Mouse')}" styleClass="animal-box">
+                    <f:setPropertyActionListener target="#{PetBean.type}" value="MOUSE" />
+                    <p> Rodents </p>
+                    <img src="#{resource['/images/mouse-logo.png']}" alt="Rodents"/>
+                </h:commandLink>
+            </h:form>
+            <h:form>
+                <h:commandLink action="#{PetBean.makeFilterRequest('All')}" styleClass="animal-box">
+                    <f:setPropertyActionListener target="#{PetBean.type}" value="" />
+                    <p> All </p>
+                    <img src="#{resource['/images/fish-logo.png']}" alt="All"/>
+                </h:commandLink>
+            </h:form>
+        </div>
+    </div>
+
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

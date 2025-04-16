@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- home.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!--Questions and answers-->
+<h:head>
+    <title>Adopet | FAQs </title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<body>
+<!--    navigation bar-->
+<ui:include src="navbar.xhtml"/>
+
+<div class="main-page">
+    <h3> Frequently Asked Questions </h3>
+</div>
+<ul class="accordion">
+    <li>
+        <input type="radio" name="accordion" id="first"/>
+        <label for="first">Why should I adopt a cat?</label>
+        <div class="answer">
+            <p> Because you need a tiny, judgmental roommate who will ignore you all day, demand food like a tiny, furry overlord, and then decide at 3 AM that it's time for a chaotic sprint around your house. Plus, who else is going to knock your stuff off the table just to remind you who’s really in charge?
+            </p>
+        </div>
+    </li>
+    <li>
+        <input type="radio" name="accordion" id="second"/>
+        <label for="second">Why should I adopt a dog?</label>
+        <div class="answer">
+            <p> Because you need a personal hype man who thinks you’re a superhero just for existing.
+                <br/> A dog will celebrate your return from the grocery store like you just won an Olympic gold medal, provide free floor cleaning services by eating dropped food, and make sure you never pee alone again. It’s a full-time fan club with bonus cuddles!
+            </p>
+        </div>
+    </li>
+    <li>
+        <input type="radio" name="accordion" id="third"/>
+        <label for="third"> I'm convinced. How can I adopt one?</label>
+        <div class="answer">
+            <p> AdoPet is a searchable list of pets all over across Israel.
+                <br/> To find an adoptable pet, you can begin your search using “Find a Pet” located above.
+                <br/> Since AdoPet is updated regularly, we recommend that you keep checking back daily, to see if you have found your soulmate.
+            </p>
+        </div>
+    </li>
+    <li>
+        <input type="radio" name="accordion" id="fourth"/>
+        <label for="fourth"> How much does it cost to adopt a pet?</label>
+        <div class="answer">
+            <p>
+                It depends which pet.
+                <br/> Generally, there is an adoption fee.
+                Adoption fees help cover the medical care of the animal while he or she waits for a new home, as well as food and transportation costs.
+            </p>
+        </div>
+    </li>
+    <li>
+        <input type="radio" name="accordion" id="fifth"/>
+        <label for="fifth"> Why would I sign up to your website?</label>
+        <div class="answer">
+            <p>
+                You should sign up to the website if you want to post pets on the website. </p>
+        </div>
+    </li>
+</ul>
+
+<!--Footer-->
+<ui:include src="footer.xhtml"/>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewAction action="#{UserBean.checkLoginRedirect}"/>
+</f:metadata>
+<!--User profile - profileInfo - My Profile-->
+<h:head>
+    <title>Adopet | My Profile </title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+
+    <div class="main-content">
+        <div class="signup-wrapper">
+            <!--Profile for user - allowing to edit information -->
+            <div class="signup-container" id="register">
+                <h3> My Profile </h3>
+                <div class="profile-user-box">
+                    <!--                    Buttons for users only: Add a pet, Pets of the user, change password-->
+                    <a href="addpet.xhtml" class="button"> Add a new Pet </a>
+                    <a href="myPets.xhtml" class="button"> My Pets </a>
+                    <a href="changePassword.xhtml" class="button"> Change password </a>
+                    <!--                    Admin only - displaying all requests for admin-->
+                    <h:panelGroup rendered="#{UserBean.admin}">
+                        <a href="contactDetails.xhtml" class="button"> 'Contact Us' requests </a>
+                    </h:panelGroup>
+                </div>
+                <h4> Edit account information </h4>
+                <h:form id="profileForm">
+                    <div class="form-container">
+                        <div id="left_col">
+                            <div class="input-box">
+                                <label> First name </label>
+                                <h:inputText id="firstName" value="#{UserBean.firstName}"
+                                             required="true" requiredMessage="Please enter your first name"
+                                             maxlength="25"
+                                             styleClass="input-field"
+                                             validatorMessage="First name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="#{UserBean.firstName}"/>
+                                    <f:ajax event="blur" render="firstNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bx-user-pin'/>
+                            </div>
+                            <div class="error-area">
+                                <h:message id="firstNameMessage" for="firstName" styleClass="error-message"/>
+                            </div>
+                            <div class="input-box">
+                                <label> Last name </label>
+                                <h:inputText id="lastName"
+                                             value="#{UserBean.lastName}"
+                                             required="true" requiredMessage="Please enter your last name"
+                                             maxlength="25"
+                                             styleClass="input-field"
+                                             validatorMessage="Last name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="#{UserBean.lastName}"/>
+                                    <f:ajax event="blur" render="lastNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bx-user-pin'/>
+                            </div>
+                            <div class="error-area">
+                                <h:message id="lastNameMessage" for="lastName" styleClass="error-message"/>
+                            </div>
+                            <div class="input-box">
+                                <label> Phone number </label>
+                                <h:inputText id="phoneNumber" value="#{UserBean.phoneNumber}"
+                                             required="true" requiredMessage="Please enter your phone number"
+                                             minlength="10" maxlength="14"
+                                             styleClass="input-field"
+                                             validatorMessage="Phone number must contain only digits and proper length">
+                                    <f:validateRegex pattern="^[0-9]+$"/>
+                                    <f:validateLength minimum="10" maximum="14" />
+                                    <f:passThroughAttribute name="placeholder" value="#{UserBean.phoneNumber}"/>
+                                    <f:ajax event="blur" render="phoneMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bxs-phone'/>
+                            </div>
+                            <div class="error-area">
+                                <h:message id="phoneMessage" for="phoneNumber" styleClass="error-message"/>
+                            </div>
+                        </div>
+                        <div id="right_col">
+                            <div class="input-box">
+                                <label> City </label>
+                                <h:selectOneMenu id="city" value="#{UserBean.city}" styleClass="input-field"
+                                                 required="true" requiredMessage="Please select your city">
+                                    <f:selectItem itemLabel="City" itemValue="#{UserBean.city}"/>
+                                    <f:selectItems value="#{CitiesBean.cities}" var="c" itemValue="#{c.id}"
+                                                   itemLabel="#{c.name}"/>
+                                    <f:ajax event="blur" render="cityMessage" execute="@this"/>
+                                </h:selectOneMenu>
+                                <i class='bx bxs-business'/>
+                            </div>
+                            <div class="error-area">
+                                <h:message id="cityMessage" for="city" styleClass="error-message"/>
+                            </div>
+                            <div class="input-box">
+                                <label> User name </label>
+                                <h:inputText value="#{UserBean.userName}"
+                                             maxlength="25"
+                                             styleClass="input-field" readonly="true">
+                                    <f:passThroughAttribute name="placeholder" value="#{UserBean.userName}"/>
+                                </h:inputText>
+                                <i class='bx bxs-user'/>
+                            </div>
+                            <div class="error-area">
+                            </div>
+                            <div class="input-box">
+                                <label> Email </label>
+                                <h:inputText id="email" value="#{UserBean.email}"
+                                             required="true" requiredMessage="Please enter your email"
+                                             styleClass="input-field"
+                                             validatorMessage="Invalid e-mail address format">
+                                    <f:validateRegex pattern=
+                                                             "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"/>
+                                    <f:passThroughAttribute name="placeholder" value="#{UserBean.email}"/>
+                                    <f:ajax event="blur" render="emailMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bxs-envelope'/>
+                            </div>
+                            <div class="error-area">
+                                <h:message id="emailMessage" for="email" styleClass="error-message"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    Buttons: Submit, Clear-->
+                    <div class="profile-buttons-box">
+                        <h:commandButton value="Clear" type="reset" styleClass="button"/>
+                        <h:commandButton value="Submit" action="#{UserBean.update}" styleClass="button"/>
+                        <h:message id="profileformMessage" for="profileForm" styleClass="error-message"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+    <!--    Footer-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

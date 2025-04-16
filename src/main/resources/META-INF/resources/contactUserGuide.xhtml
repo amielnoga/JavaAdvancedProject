@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- contactUsUserGuide.xhtml -->
+<!-- Display user guide for the contact Us page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="Contact Us User Guide" styleClass="title"/>
+
+    <h:outputText value=" This article is for users who want to use Contact Us web page."/>
+    <h:graphicImage name="applicationScreenshots/contactUsScreenshot.png" library="images"
+                    alt="Contact Us Screenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you will find a form that you can fill out to contact us."/>
+    <br/>
+    <h:outputText value=" Please enter all your information, select the options in the dropdown menu that best describes
+            your request, and one of our team members will get back to you."/>
+    <br/>
+    <h:outputText value="Don't forget to click the 'Submit' button."/>
+    <br/>
+
+    <h:panelGroup rendered="#{UserBean.admin == true}">
+        <h:outputText value="This section visible only for Admin" styleClass="title"/>
+        <h:outputText value="You can view all the contact requests."/>
+        <h:graphicImage name="applicationScreenshots/contactUsMangerViewScreenshot.png" library="images"
+                        alt="contactUsMangerViewScreenshot"
+                        styleClass="screenshot"/>
+        <h:outputText
+                value="You can edit the status of a request by selecting a different option from the dropdown menu."/>
+    </h:panelGroup>
+
+</h:body>
+</html>

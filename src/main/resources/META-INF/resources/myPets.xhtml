@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewAction action="#{UserBean.checkLoginRedirect}"/>
+    <f:event type="preRenderView" listener="#{PetBean.clearSelectedPetOnLoad}"/>
+    <f:event type="preRenderView" listener="#{PetBean.InitFilterRequestMyPets}"/>
+    <f:event type="preRenderView" listener="#{PetBean.getFilteredPets}"/>
+</f:metadata>
+<!--My Pets page-->
+<h:head>
+    <title>Adopet | My Pets </title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:messages id="flashMessages" globalOnly="true" layout="table" styleClass="success-message"
+                rendered="#{facesContext.maximumSeverity.ordinal lt 2}"/>
+</h:head>
+<body>
+<!--    navigation bar-->
+<ui:include src="navbar.xhtml"/>
+<div class="main-content">
+    <h:form id="myPetsForm">
+        <h3> My Pets </h3>
+        <h:panelGroup rendered="#{empty PetBean.filteredData}">
+            <!--        If there are no pets the user published - shows a message-->
+            <div class="adopted-wrapper">
+                <p> You haven't added any pet for adoption yet. </p>
+            </div>
+        </h:panelGroup>
+        <!--Detailed card of the selected pet (on click): Name, type, gender, birth date, adoption status, spayed status, size and description-->
+        <!--        The card also allows to update photo and delete the pet-->
+        <div>
+            <p:outputPanel id="detailedWrapperMyPets" layout="block">
+                <h:panelGroup id="detailedPetPanel" rendered="#{not empty PetBean.selectedPet}">
+                    <div class="editpet-wrapper" id="editMyPets">
+                        <div class="editpet-container">
+                            <p style="color: rebeccapurple"> Edit #{PetBean.selectedPet.name} </p>
+                            <p:commandButton value="X"
+                                             action="#{PetBean.clearSelectedPet}"
+                                             update=":myPetsForm:detailedWrapperMyPets"
+                                             styleClass="close-btn"/>
+                            <div id="left_col">
+                                <div class="input-box">
+                                    <label for="name"> Pet's name </label>
+                                    <h:inputText id="name" value="#{PetBean.selectedPet.name}" required="true"
+                                                 styleClass="input-field" maxlength="25"
+                                                 requiredMessage="Pet name is required">
+                                        <f:passThroughAttribute name="placeholder" value="Pet's Name"/>
+                                        <f:ajax event="blur" render="nameMessage" execute="@this"/>
+                                    </h:inputText>
+                                    <h:message id="nameMessage" for="name" styleClass="error-message"/>
+                                </div>
+                                <div class="input-box">
+                                    <label for="type"> Pet's type </label>
+                                    <h:selectOneMenu id="type" value="#{PetBean.selectedPet.type}"
+                                                     name="type" required="true"
+                                                     styleClass="input-field" requiredMessage="Pet type is required">
+                                        <f:selectItem itemValue="" itemLabel="Type"/>
+                                        <f:selectItems value="#{PetBean.typeOptions}"
+                                                       var="t"
+                                                       itemLabel="#{t.label}"
+                                                       itemValue="#{t}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="error-area">
+                                    <h:message id="typeMessage" for="type" styleClass="error-message"/>
+                                </div>
+                                <div class="input-box">
+                                    <label for="gender"> Sex </label>
+                                    <h:selectOneRadio id="gender" value="#{PetBean.selectedPet.gender}"
+                                                      name="Gender" required="true" styleClass="gender-options"
+                                                      requiredMessage="Sex is required">
+                                        <f:selectItem itemValue="male" itemLabel="Male"/>
+                                        <f:selectItem itemValue="female" itemLabel="Female"/>
+                                        <f:selectItem itemValue="unknown" itemLabel="I don't know"/>
+                                        <f:ajax event="blur" render="genderMessage" execute="@this"/>
+                                    </h:selectOneRadio>
+                                </div>
+                                <div class="error-area">
+                                    <h:message id="genderMessage" for="gender" styleClass="error-message"/>
+                                </div>
+                                <div class="input-box">
+                                    <h:outputLabel for="birthDate" value="Date of Birth"/>
+                                    <h:inputText id="birthDate" value="#{PetBean.selectedPet.birthDate}" required="true"
+                                                 styleClass="date-input"
+                                                 requiredMessage="Date of birth is required.
+                                                              If you don't know - write an estimated date">
+                                        <f:passThroughAttribute name="type" value="date"/>
+                                        <f:ajax event="blur" render="dateMessage" execute="@this"/>
+                                    </h:inputText>
+                                </div>
+                                <div class="error-area">
+                                    <h:message id="dateMessage" for="birthDate" styleClass="error-message"/>
+                                </div>
+                                <div class="input-box">
+                                    <h:outputLabel for="adoption" value="Adoption Status"/>
+                                    <h:selectOneMenu id="adoption" value="#{PetBean.selectedPet.isAdopted}"
+                                                     styleClass="input-field">
+                                        <f:selectItem itemValue="#{false}" itemLabel="Not adopted"/>
+                                        <f:selectItem itemValue="#{true}" itemLabel="Adopted"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <div id="right_col">
+                                <div class="boolean-box">
+                                    <label for="sterilized"> Is Spayed/Neutered? </label>
+                                    <h:selectBooleanCheckbox id="sterilized" value="#{PetBean.selectedPet.isNeutered}"
+                                                             name="Is neutered?"
+                                                             required="false"/>
+                                </div>
+                                <div class="input-box">
+                                    <label for="size"> Pet's Size </label>
+                                    <h:selectOneMenu id="size" styleClass="input-field"
+                                                     value="#{PetBean.selectedPet.size}"
+                                                     required="true" requiredMessage="Choose The pet's size">
+                                        <f:selectItem itemLabel="Size" itemValue=""/>
+                                        <f:selectItems value="#{PetBean.sizeOptions}"
+                                                       var="s"
+                                                       itemLabel="#{s.label}"
+                                                       itemValue="#{s}"/>
+                                        <f:ajax event="blur" render="sizeMessage" execute="@this"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="error-area">
+                                    <h:message id="sizeMessage" for="size" styleClass="error-message"/>
+                                </div>
+                                <div class="form-input-box">
+                                    <label for="shortDescription"> Short description </label>
+                                    <h:inputText id="shortDescription" value="#{PetBean.selectedPet.shortDescription}"
+                                                 styleClass="input-field" required="true"
+                                                 requiredMessage="Please provide a description about the pet">
+                                        <f:passThroughAttribute name="placeholder" value="Short description"/>
+                                        <f:ajax event="blur" render="sDescriptionMessage" execute="@this"/>
+                                    </h:inputText>
+                                    <h:message id="sDescriptionMessage" for="shortDescription"
+                                               styleClass="error-message"/>
+                                </div>
+
+                                <div class="form-input-box">
+                                    <label for="longDescription"> Long description </label>
+                                    <h:inputTextarea id="longDescription" value="#{PetBean.selectedPet.longDescription}"
+                                                     rows="3"
+                                                     styleClass="input-field" required="true"
+                                                     requiredMessage="Please provide a description about the pet">
+                                        <f:ajax event="blur" render="lDescriptionMessage" execute="@this"/>
+                                    </h:inputTextarea>
+                                    <h:message id="lDescriptionMessage" for="longDescription"
+                                               styleClass="error-message"/>
+                                </div>
+                            </div>
+                            <h:commandButton value="Update pet" action="#{PetBean.selectedPet.updatePet}"
+                                             styleClass="button"/>
+                            <div class="profile-buttons-box">
+                                <h:commandButton value="Delete" action="#{PetBean.selectedPet.deletePet}"
+                                                 styleClass="button delete-pet-button"/>
+                                <h:commandButton value="Update photo" action="#{PetBean.selectedPet.updatePhoto}"
+                                                 styleClass="button"/>
+                            </div>
+                            <h:messages id="errorMessages" globalOnly="true" styleClass="error-message" layout="table"
+                                        rendered="#{facesContext.maximumSeverity.ordinal eq 2}"/>
+                        </div>
+                    </div>
+
+                </h:panelGroup>
+            </p:outputPanel>
+        </div>
+        <!--        Grid with all pets of the user-->
+        <div class="pet-list-scroll-wrapper">
+            <ui:repeat value="#{PetBean.filteredData}" var="pet">
+                <p:commandLink action="#{PetBean.setSelectedPet(pet)}"
+                               process="@this"
+                               update=":myPetsForm:detailedWrapperMyPets"
+                               oncomplete="document.getElementById('myPetsForm:detailedWrapperMyPets').scrollIntoView({ behavior: 'smooth' });"
+                               styleClass="pet-card-button-link">
+                    <!--each pet card shows: image, name, age, gender-->
+                    <div class="pet-card">
+                        <img src="#{pet.imageUri}" alt="#{pet.shortDescription}" class="pet-image"/>
+                        <div class="pet-name">#{pet.name}</div>
+                        <h:panelGroup rendered="#{pet.age ge 2}">
+                            <div class="pet-details">#{pet.age} years old</div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{pet.age lt 2}">
+                            <div class="pet-details">#{pet.age} year old</div>
+                        </h:panelGroup>
+                        <div class="pet-details">#{pet.gender}</div>
+                    </div>
+                </p:commandLink>
+            </ui:repeat>
+        </div>
+    </h:form>
+</div>
+<!--footer-->
+<ui:include src="footer.xhtml"/>
+</body>
+</html>

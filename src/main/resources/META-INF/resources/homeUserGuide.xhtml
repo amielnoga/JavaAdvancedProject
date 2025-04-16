@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- homeUserGuide.xhtml -->
+<!-- Display user guide for the home page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="Homepage User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to use homepage."/>
+    <h:graphicImage name="applicationScreenshots/homeScreenshot.png" library="images"
+                    alt="homeScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you have shortcuts to search for your new best friend. Click on the type of pet you are
+            interested in, and you will be redirected to the 'Adoption Board' page with search parameters based on your
+            selection."/>
+</h:body>
+
+</html>

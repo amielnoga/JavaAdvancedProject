@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--documentationNavbar.xhtml -->
+<!-- navigation bar of the Adopet web application documentation-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <nav class="breadcrumbs">
+        <h:link value="Documentation" outcome="/documentation.xhtml"/>
+        <span> > </span>
+        <span class="current-page">
+            <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/addNewPetUserGuide.xhtml'}">
+                Add a New Pet User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/adoptedUserGuide.xhtml'}">
+               Adopted User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/boardUserGuide.xhtml'}">
+                Board User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/aboutUserGuide.xhtml'}">
+                About User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/contactUserGuide.xhtml'}">
+               Contact User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/homeUserGuide.xhtml'}">
+                Home User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/loginUserGuide.xhtml'}">
+                Login User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/signupUserGuide.xhtml'}">
+               Sign Up User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/myPetsUserGuide.xhtml'}">
+                My Pets User Guide
+            </ui:fragment>
+           <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/qaUserGuide.xhtml'}">
+                QA User Guide
+            </ui:fragment>
+             <ui:fragment rendered="#{facesContext.viewRoot.viewId eq '/userProfileUserGuide.xhtml'}">
+                User Profile User Guide
+            </ui:fragment>
+    </span>
+    </nav>
+</ui:composition>

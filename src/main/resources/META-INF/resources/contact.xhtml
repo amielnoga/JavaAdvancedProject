@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--Contact us form for guests-->
+<h:head>
+    <title>Adopet | Contact Us</title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+    <div class="main-content">
+        <div class="contactus-wrapper">
+            <div class="signup-container" id="register">
+                <h3> Contact Us </h3>
+                <!--                Form for contacting the admin of the website-->
+                <h:form>
+                    <div class="form-container">
+                        <div id="left_col">
+                            <div class="form-input-box">
+                                <h:inputText id="firstName" value="#{UserBean.firstName}" required="true"
+                                             requiredMessage="Please enter your first name"
+                                             maxlength="25" styleClass="input-field"
+                                             validatorMessage="First name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="First Name"/>
+                                    <f:ajax event="blur" render="firstNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <h:message id="firstNameMessage" for="firstName" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="lastName" value="#{UserBean.lastName}"
+                                             required="true" requiredMessage="Please enter your last name"
+                                             styleClass="input-field" maxlength="25"
+                                             validatorMessage="Last name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="Last Name"/>
+                                    <f:ajax event="blur" render="lastNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <h:message id="lastNameMessage" for="lastName" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="phoneNumber" value="#{UserBean.phoneNumber}" required="true"
+                                             requiredMessage="Please enter your phone number"
+                                             minlength="10" maxlength="14"
+                                             styleClass="input-field"
+                                             validatorMessage="Phone number must contain only digits and proper length">
+                                    <f:validateRegex pattern="^[0-9]+$"/>
+                                    <f:validateLength minimum="10" maximum="14" />
+                                    <f:passThroughAttribute name="placeholder" value="Phone Number"/>
+                                    <f:ajax event="blur" render="phoneMessage" execute="@this"/>
+                                </h:inputText>
+                                <h:message id="phoneMessage" for="phoneNumber" styleClass="error-message"/>
+                            </div>
+
+                        </div>
+                        <div id="right_col">
+                            <div class="input-box">
+                                <label for="interested"> I am interested in:</label>
+                                <h:selectOneMenu id="interested" value="#{ContactRequestBean.interestedIn}"
+                                                 name="interested" required="true" styleClass="input-field">
+                                    <f:selectItems value="#{ContactRequestBean.interestedInTypes}"
+                                                   var="type"
+                                                   itemLabel="#{type.label}"
+                                                   itemValue="#{type}"/>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="email" value="#{UserBean.email}"
+                                             required="true" requiredMessage="Please enter your email"
+                                             styleClass="input-field"
+                                             validatorMessage="Email format is not valid">
+                                    <f:validateRegex pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"/>
+                                    <f:passThroughAttribute name="placeholder" value="Email"/>
+                                    <f:ajax event="blur" render="emailMessage" execute="@this"/>
+                                </h:inputText>
+                                <h:message id="emailMessage" for="email" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box long-description">
+                                <h:inputTextarea id="description" value="#{ContactRequestBean.description}"
+                                                 required="true" requiredMessage="Please enter your description"
+                                                 styleClass="input-field long">
+                                    <f:passThroughAttribute name="placeholder" value="How can we help?"/>
+                                    <f:ajax event="blur" render="descriptionMessage" execute="@this"/>
+                                </h:inputTextarea>
+                                <h:message id="descriptionMessage" for="description" styleClass="error-message"/>
+                            </div>
+                        </div>
+                        <h:commandButton value="Submit" action="#{ContactRequestBean.submit}" styleClass="button"/>
+                        <h:messages id="errorMessages" globalOnly="true" styleClass="error-message" layout="table"
+                                    rendered="#{facesContext.maximumSeverity.ordinal eq 2}"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    <!--Footer-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

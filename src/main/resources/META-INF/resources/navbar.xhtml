@@ -1,0 +1,40 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+>
+    <!--    Navigation bar - linked to all pages-->
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="#{resource['images/logo_only.png']}" height="55px" alt="Logo"/>
+            <!--            Shows the name if user logged in-->
+            <h:panelGroup rendered="#{UserBean.loggedIn}">
+                <li><h:outputText value="Welcome, #{UserBean.firstName}! " styleClass="welcome-tag"/></li>
+            </h:panelGroup>
+            <!--            Fixed butttons-->
+            <ul>
+                <li><a href="home.xhtml">Home</a></li>
+                <li><a href="about.xhtml">About us</a></li>
+                <li><a href="board.xhtml">Adoption Board</a></li>
+                <li><a href="adopted.xhtml">Adopted with Love</a></li>
+                <li><a href="qa.xhtml">Q&amp;A</a></li>
+                <li><a href="contact.xhtml">Contact Us</a></li>
+
+                <!--Buttons: Log in and Sign Up if user is not connected-->
+                <h:panelGroup rendered="#{not UserBean.loggedIn}">
+                    <li><a href="login.xhtml">Log in</a></li>
+                    <li><a href="signup.xhtml">Sign up</a></li>
+                </h:panelGroup>
+
+                <!--Buttons: My profile and Log Out if user is  connected-->
+                <h:panelGroup rendered="#{UserBean.loggedIn}">
+                    <li><a href="profileInfo.xhtml">My Profile</a></li>
+                    <li>
+                        <h:form>
+                            <h:commandLink value="Logout" action="#{UserBean.logout}"/>
+                        </h:form>
+                    </li>
+                </h:panelGroup>
+            </ul>
+        </div>
+    </nav>
+</ui:fragment>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- aboutUserGuide.xhtml -->
+<!-- Display user guide for the about page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Adopet Documentation</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="About User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to use the About web page."/>
+    <h:graphicImage name="applicationScreenshots/aboutScreenshot.png" library="images" alt="about Screenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page you can read about our platform, our vision and why to choose us!"/>
+</h:body>
+
+</html>

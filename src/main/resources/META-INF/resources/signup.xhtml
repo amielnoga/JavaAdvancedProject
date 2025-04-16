@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--Signup-->
+
+<h:head>
+    <title>Adopet | Sign Up</title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+
+    <div class="main-content">
+        <div class="signup-wrapper">
+            <div class="signup-container" id="register">
+                <h3> Sign Up </h3>
+                <!--            form to sign up to the website-->
+                <h:form id="signUpForm">
+                    <div class="form-container">
+                        <div id="left_col">
+                            <div class="form-input-box">
+                                <h:inputText id="firstName"
+                                             value="#{UserBean.firstName}"
+                                             required="true" requiredMessage="Please enter your first name"
+                                             maxlength="25"
+                                             styleClass="input-field"
+                                             validatorMessage="First name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="First Name"/>
+                                    <f:ajax event="blur" render="firstNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bx-user-pin'/>
+                                <h:message id="firstNameMessage" for="firstName" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="lastName"
+                                             value="#{UserBean.lastName}"
+                                             required="true" requiredMessage="Please enter your last name"
+                                             maxlength="25"
+                                             styleClass="input-field"
+                                             validatorMessage="Last name must contain only letters">
+                                    <f:validateRegex pattern="^[A-Za-z ]+$"/>
+                                    <f:passThroughAttribute name="placeholder" value="Last Name"/>
+                                    <f:ajax event="blur" render="lastNameMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bx-user-pin'/>
+                                <h:message id="lastNameMessage" for="lastName" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="phoneNumber"
+                                             value="#{UserBean.phoneNumber}"
+                                             required="true" requiredMessage="Please enter your phone number"
+                                             styleClass="input-field"
+                                             validatorMessage="Phone number must contain only digits and proper length">
+                                    <f:validateRegex pattern="^[0-9]+$"/>
+                                    <f:validateLength minimum="10" maximum="14" />
+                                    <f:passThroughAttribute name="placeholder" value="Phone Number"/>
+                                    <f:ajax event="blur" render="phoneMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bxs-phone'/>
+                                <h:message id="phoneMessage" for="phoneNumber" styleClass="error-message"/>
+                            </div>
+
+                            <div class="form-input-box">
+                                <h:selectOneMenu id="city"
+                                                 value="#{UserBean.city}" styleClass="input-field" required="true"
+                                                 requiredMessage="Please select your city">
+                                    <f:selectItem itemLabel="City" itemValue=""/>
+                                    <f:selectItems value="#{CitiesBean.cities}" var="c" itemValue="#{c.id}"
+                                                   itemLabel="#{c.name}"/>
+                                    <f:ajax event="blur" render="cityMessage" execute="@this"/>
+                                </h:selectOneMenu>
+                                <i class='bx bxs-business'/>
+                                <h:message id="cityMessage" for="city" styleClass="error-message"/>
+                            </div>
+                        </div>
+                        <div id="right_col">
+                            <div class="form-input-box">
+                                <h:inputText id="userName"
+                                             value="#{UserBean.userName}"
+                                             required="true" requiredMessage="Please enter a username"
+                                             maxlength="25"
+                                             styleClass="input-field">
+                                    <f:passThroughAttribute name="placeholder" value="User Name"/>
+                                    <f:ajax event="blur" listener="#{UserBean.isUsernameAvailable}"
+                                            render="userNameMessage"
+                                            execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bxs-user'/>
+                                <h:message id="userNameMessage" for="userName" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputText id="email"
+                                             value="#{UserBean.email}"
+                                             required="true" requiredMessage="Please enter your email"
+                                             styleClass="input-field"
+                                             validatorMessage="Invalid e-mail address format">
+                                    <f:validateRegex pattern=
+                                                             "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"/>
+                                    <f:passThroughAttribute name="placeholder" value="Email"/>
+                                    <f:ajax event="blur" render="emailMessage" execute="@this"/>
+                                </h:inputText>
+                                <i class='bx bxs-envelope'/>
+                                <h:message id="emailMessage" for="email" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputSecret id="password"
+                                               value="#{UserBean.password}"
+                                               required="true" requiredMessage="Please enter a password"
+                                               styleClass="input-field"
+                                               validatorMessage="Password must be at least 6 characters long and include uppercase, lowercase, number, and special character"
+                                               placeholder="Password">
+                                    <f:passThroughAttribute name="placeholder" value="Password"/>
+                                    <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$"/>
+                                    <f:ajax event="blur" render="passwordMessage repasswordMessage"
+                                            listener="#{UserBean.isPasswordsMatch}" execute="@this"/>
+                                </h:inputSecret>
+                                <i class='bx bxs-lock-alt'/>
+                                <h:message id="passwordMessage" for="password" styleClass="error-message"/>
+                            </div>
+                            <div class="form-input-box">
+                                <h:inputSecret id="passwordVerification" value="#{UserBean.passwordVerification}"
+                                               required="true" requiredMessage="Please re-enter your password"
+                                               styleClass="input-field">
+                                    <f:passThroughAttribute name="placeholder" value="Re-enter Password"/>
+                                    <f:ajax event="keyup" render="repasswordMessage"
+                                            listener="#{UserBean.isPasswordsMatch}"
+                                            execute="@this password"/>
+                                </h:inputSecret>
+                                <i class='bx bxs-lock-alt'/>
+                                <h:message id="repasswordMessage" for="passwordVerification"
+                                           styleClass="error-message"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                Buttons-->
+                    <h:commandButton value="Submit" action="#{UserBean.signUp}" styleClass="button">
+                        <f:ajax execute="@form"
+                                render="firstNameMessage lastNameMessage phoneMessage cityMessage userNameMessage signUpMessage emailMessage passwordMessage repasswordMessage signformMessage"/>
+                    </h:commandButton>
+                    <h:message id="signformMessage" for="signUpForm" styleClass="error-message"/>
+                </h:form>
+                <div class="register-link">
+                    <p> Already have an account?
+                        <a href="login.xhtml">Log in </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    footer-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<!--Adoption board page-->
+<f:metadata>
+    <f:event type="preRenderView" listener="#{PetBean.clearSelectedPetOnLoad}"/>
+    <f:event type="preRenderView" listener="#{PetBean.InitFilterRequestAdoptedFalse}"/>
+</f:metadata>
+<h:head>
+    <title>Adopet | Adoption Board </title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:messages id="flashMessages" globalOnly="true" layout="table" styleClass="success-message"
+                rendered="#{facesContext.maximumSeverity.ordinal lt 2}"/>
+    <h:messages id="flashMessage" globalOnly="true" layout="table" styleClass="warning-message"
+                rendered="#{facesContext.maximumSeverity.ordinal eq 2}"/>
+</h:head>
+<body>
+<!--    navigation bar-->
+<ui:include src="navbar.xhtml"/>
+<div class="main-content">
+    <h3> Adoption board </h3>
+    <!--    Form to filter all pets available for adoption-->
+    <h:form id="petForm">
+
+        <div class="filters">
+            <h4> Filter by </h4>
+            <!--    Filter line, filters by: Type, Size, Gender, Spayed, Minimum & Maximum age, District of adoption -->
+            <div class="filter-line">
+                <label> Type </label>
+                <h:selectOneMenu id="type" value="#{PetBean.type}" styleClass="input-field" name="type">
+                    <f:selectItem itemLabel="All" itemValue=""/>
+                    <f:selectItems value="#{PetBean.typeOptions}"
+                                   var="t"
+                                   itemLabel="#{t.label}"
+                                   itemValue="#{t}"/>
+                </h:selectOneMenu>
+                <label> Size </label>
+                <h:selectOneMenu value="#{PetBean.size}" styleClass="input-field">
+                    <f:selectItem itemLabel="All" itemValue=""/>
+                    <f:selectItems value="#{PetBean.sizeOptions}"
+                                   var="s"
+                                   itemLabel="#{s.label}"
+                                   itemValue="#{s}"/>
+                </h:selectOneMenu>
+                <label> Sex </label>
+                <h:selectOneMenu value="#{PetBean.gender}" styleClass="input-field">
+                    <f:selectItem itemLabel="All" itemValue="null"/>
+                    <f:selectItem itemLabel="Male" itemValue="male"/>
+                    <f:selectItem itemLabel="Female" itemValue="female"/>
+                </h:selectOneMenu>
+                <label for="sterilized"> Is Spayed? </label>
+                <h:selectOneMenu id="sterilized" value="#{PetBean.isNeutered}" styleClass="input-field">
+                    <f:selectItem itemLabel="All" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Yes" itemValue="#{true}"/>
+                    <f:selectItem itemLabel="No" itemValue="#{false}"/>
+                </h:selectOneMenu>
+                <label>Min Age</label>
+                <h:inputText value="#{PetBean.minAge}" styleClass="age-input">
+                </h:inputText>
+                <label>Max Age</label>
+                <h:inputText value="#{PetBean.maxAge}" styleClass="age-input">
+                </h:inputText>
+                <label> Area of adoption </label>
+                <h:selectOneMenu id="district" value="#{PetBean.district}" styleClass="input-field">
+                    <f:selectItem itemLabel="All Areas" itemValue="0"/>
+                    <f:selectItem itemLabel="North" itemValue="North"/>
+                    <f:selectItem itemLabel="Center" itemValue="Center"/>
+                    <f:selectItem itemLabel="Jerusalem" itemValue="Jerusalem"/>
+                    <f:selectItem itemLabel="South" itemValue="South"/>
+                    <f:selectItem itemLabel="Valleys" itemValue="Valleys"/>
+                </h:selectOneMenu>
+                <h:commandButton value="Submit" action="#{PetBean.makeAdvancedFilterRequest}" styleClass="button">
+                    <f:ajax execute="@form"
+                            render=":petForm:listWrapper :petForm:detailedWrapper :petForm:noResultsWrapper"
+                            listener="#{PetBean.clearSelectedPet}"/>
+                </h:commandButton>
+            </div>
+        </div>
+
+        <!--Displaying message if there are no results for filter-->
+        <h:panelGroup id="noResultsWrapper" layout="block">
+            <h:panelGroup id="noResultsPanel" rendered="#{PetBean.filterSubmitted and empty PetBean.filteredData}">
+                <div class="adopted-wrapper">
+                    <p> No pets match your filter request. Please try to expend it :) </p>
+                </div>
+            </h:panelGroup>
+        </h:panelGroup>
+
+
+        <!--    A detailed card of the pet with all details: Image, name, type, gender, size, descriptions, spayed status, City, and details of the current owner -->
+        <p:outputPanel id="detailedWrapper" layout="block">
+            <h:panelGroup id="detailedPetPanel" rendered="#{not empty PetBean.selectedPet}">
+                <div class="detailed-pet-card">
+                    <p:commandButton value="X"
+                                     action="#{PetBean.clearSelectedPet}"
+                                     update="detailedWrapper"
+                                     styleClass="close-btn"/>
+                    <img src="#{PetBean.selectedPet.imageUri}" alt="#{PetBean.selectedPet.shortDescription}"
+                         class="pet-image"/>
+                    <div class="pet_left_col">
+                        <div class="pet-name">Named #{PetBean.selectedPet.name}</div>
+                        <div class="pet-details">Type: #{PetBean.selectedPet.type.label}</div>
+                        <div class="pet-details">Gender: #{PetBean.selectedPet.gender}</div>
+                        <div class="pet-details">Size: #{PetBean.selectedPet.size.label}</div>
+                        <div class="pet-details">#{PetBean.selectedPet.shortDescription} </div>
+                    </div>
+                    <div class="pet_right_col">
+                        <h:panelGroup rendered="#{PetBean.selectedPet.isNeutered}">
+                            <div class="pet-details">Spayed</div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{!PetBean.selectedPet.isNeutered}">
+                            <div class="pet-details">Not spayed</div>
+                        </h:panelGroup>
+                        <div class="pet-details">Age: #{PetBean.selectedPet.age} (born in #{PetBean.selectedPet.birthDate})</div>
+                        <div class="pet-details">Place: #{PetBean.selectedPet.owner.cityName} </div>
+                        <!--                        Owner details-->
+                        <div class="owner-details">
+                            <div class="pet-details">Point of contact: #{PetBean.selectedPet.owner.firstName} </div>
+                            <div class="pet-details">Phone: #{PetBean.selectedPet.owner.phoneNumber}</div>
+                        </div>
+                    </div>
+                    <div class="pet-long-description">#{PetBean.selectedPet.longDescription}</div>
+                </div>
+            </h:panelGroup>
+        </p:outputPanel>
+
+        <!--    Grid displaying all pets available for adoption and relevant to the filter -->
+        <p:outputPanel id="listWrapper" layout="block">
+            <ui:repeat value="#{PetBean.filteredData}" var="pet">
+
+                <p:commandLink action="#{PetBean.setSelectedPet(pet)}"
+                               process="@this"
+                               update=":petForm:detailedWrapper"
+                               oncomplete="document.getElementById('petForm:detailedWrapper').scrollIntoView({ behavior: 'smooth' });"
+                               styleClass="pet-card-button-link">
+                    <!--Data displayed for each pet: Name, age, gender-->
+                    <div class="pet-card">
+                        <!--                    Admin has permissions to delete every pet in the board-->
+                        <h:panelGroup rendered="#{UserBean.admin}">
+                            <p:commandButton value="🚫" action="#{pet.deletePet}" styleClass="close-btn"/>
+                        </h:panelGroup>
+                        <img src="#{pet.imageUri}" alt="#{pet.shortDescription}" class="pet-image"/>
+                        <div class="pet-name">#{pet.name}</div>
+                        <h:panelGroup rendered="#{pet.age ge 2}">
+                        <div class="pet-details">#{pet.age} years old</div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{pet.age lt 2}">
+                            <div class="pet-details">#{pet.age} year old</div>
+                        </h:panelGroup>
+                        <div class="pet-details">#{pet.gender}</div>
+                    </div>
+                </p:commandLink>
+            </ui:repeat>
+        </p:outputPanel>
+    </h:form>
+</div>
+
+<!--Footer-->
+<ui:include src="footer.xhtml"/>
+</body>
+</html>

@@ -1,0 +1,1013 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* ^ Added font Raleway*/
+
+/*General Website style*/
+* {
+    text-decoration: none;
+    font-family: Raleway;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(#{resource[ "images/1.JPG" ]});
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*Navigation bar*/
+.navbar {
+    height: 60px;
+    background: linear-gradient(#393d34, transparent);
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navdiv ul {
+    display: flex;
+    list-style: none;
+}
+
+.navdiv li {
+    list-style: none;
+    display: inline-block;
+}
+
+li a {
+    color: white;
+    font-size: 18px;
+    margin-right: 25px;
+}
+
+button a {
+    color: black;
+    font-size: 17px;
+    text-align: center;
+}
+
+.welcome-tag {
+    color: rgb(232, 210, 173);
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/*General*/
+
+button {
+    background-color: #e1cbaa;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 9px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.main-content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.main-page {
+    margin-top: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+}
+
+h3 {
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    margin-bottom: 10px;
+    width: 100%;
+    display: block;
+}
+
+h4 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    display: block;
+}
+
+/*Login page*/
+.login-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    width: 420px;
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+/*Sign-up page*/
+.signup-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    text-align: center;
+}
+
+.main-page h3 {
+    font-size: 35px;
+    font-weight: bold;
+    /*padding: 20px 10px;*/
+}
+
+.main-page > div {
+    display: flex;
+    justify-content: center; /* Centers animal-boxes */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds spacing between the boxes */
+    margin-top: 20px; /* Adds space between text and boxes */
+}
+
+label {
+    color: black;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/*Sign-up and login pages */
+
+interested {
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding-left: 15px;
+    color: black;
+}
+
+.signup-container {
+    width: 640px;
+    margin: 0 auto;
+}
+
+#left_col {
+    float: left;
+    width: 300px;
+}
+
+#right_col {
+    float: right;
+    width: 300px;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    margin-top: 25px;
+    position: relative;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 200px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding-left: 15px;
+    color: black;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: black;
+}
+
+.button {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #393d34;
+    color: white;
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.button:hover {
+    background-color: #2a2d27;
+}
+
+.register-link {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p :hover {
+    border-bottom: 2px solid;
+}
+
+a:hover {
+    border-bottom: 2px solid;
+}
+
+.long {
+    height: 80px;
+}
+
+.input-field {
+    width: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    color: black;
+}
+
+.form-input-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    position: relative;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 200px;
+    flex-direction: column;
+}
+
+.login-wrapper .form-input-box {
+    gap: unset;
+}
+
+.error-area {
+    height: 10px;
+    margin: 10px;
+    display: flex;
+}
+
+.form-input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding-left: 15px;
+    color: black;
+}
+
+.form-input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    align-items: center;
+    color: black;
+}
+
+.error-message {
+    color: darkred;
+    font-size: 0.8rem;
+    text-align: left;
+    width: 100%;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+/*Home page*/
+
+.animal-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 222, 173, 0.5);
+    color: black;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    gap: 8px;
+    flex-direction: column;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+}
+
+.animal-box:hover {
+    border: 2px solid black;
+    background: rgb(227, 207, 175);
+}
+
+.animal-box > div {
+    display: flex;
+    justify-content: center; /* Centers animal-boxes */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds spacing between the boxes */
+    margin-top: 20px; /* Adds space between text and boxes */
+}
+
+.animal-box p {
+    font-size: 18px;
+}
+
+.animal-box:hover p {
+    font-size: 140%;
+    font-weight: 700;
+}
+
+/*QA page*/
+.accordion {
+    width: 700px;
+}
+
+.accordion li {
+    list-style: none;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 222, 173, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+
+}
+
+.accordion li label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.accordion label::before {
+    content: '🐕‍🦺';
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.accordion input[type="radio"] {
+    display: none;
+}
+
+.accordion .answer {
+    color: #333333;
+    padding: 0 10px;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, padding 0.5s;
+}
+
+.accordion input[type="radio"]:checked + label + .answer {
+    max-height: 400px;
+    padding: 10px 10px 20px;
+}
+
+.accordion input[type="radio"]:checked + label::before {
+    content: '🐈‍⬛';
+}
+
+/*About us page*/
+.about-us-wrapper {
+    padding: 20px;
+    /*width: 65%;*/
+    width: fit-content;
+    background: rgba(255, 222, 173, 0.5);
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    margin: 20px auto;
+    text-align: center;
+}
+
+.developers-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    height: 290px;
+}
+
+.developers-box p {
+    font-size: 90%;
+    padding: 6px;
+}
+
+.developers-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 251, 235, 0.7);
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    gap: 8px;
+    flex-direction: column;
+    width: 250px;
+    height: 200px;
+}
+
+.developers-box .about-us-pictures {
+    height: 100px;
+    border-radius: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(256, 256, 256, .8);
+}
+
+.developers-box:hover .about-us-pictures {
+    height: 150px;
+    border: 4px solid rgba(256, 256, 256, .8);
+}
+
+.developers-box:hover {
+    width: 300px;
+    height: 250px;
+}
+
+
+/*Footer - General*/
+footer {
+    background: rgba(255, 222, 173, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    color: #2a2d27;
+    padding: 5px 10px;
+    width: 100%;
+    margin-top: auto;
+    border-top: 1px solid #2a2d27;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.footer-container i {
+    padding: 2px;
+    font-size: 18px;
+}
+
+.footer-container a {
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+    border: none;
+}
+
+.footer-container h5 {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+
+/*add pet page*/
+.addpet-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+.addpet-container {
+    margin: 0 auto;
+}
+
+.addpet-container .input-field {
+    width: 100%;
+    height: 90%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    color: black;
+}
+
+.gender-options label {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.age {
+    font-size: 12px;
+    color: black;
+}
+
+.long-description {
+    height: 20%;
+}
+
+.addpet-container .input-box {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    margin: 10px 0;
+    position: relative;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 200px;
+}
+
+.addpet-container .boolean-box {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.editpet-container .boolean-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 30px 0;
+    position: relative;
+}
+
+.age-box {
+    width: 30% !important;
+    height: 70% !important;
+}
+
+.age-input {
+    width: 30px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: transparent;
+    text-align: center;
+}
+
+#sterilized {
+    appearance: auto;
+    width: auto;
+    height: auto;
+}
+
+/*Profile Page*/
+.profile-buttons-box .button {
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+.profile-user-box {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.profile-user-box .button {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: rebeccapurple;
+    margin-bottom: 10px;
+}
+
+/*Contact details table page*/
+.contact-table {
+    width: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contact-table th, .contact-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.contact-table th {
+    background-color: rgb(255, 222, 173);
+    color: black;
+    font-weight: bold;
+}
+
+.contact-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.contact-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.contact-table td {
+    color: #333;
+}
+
+.header {
+    background-color: rgb(255, 222, 173);
+    color: black;
+}
+
+.oddRows {
+    background-color: #ffffff;
+}
+
+.evenRows {
+    background-color: #f2f2f2;
+}
+
+.success-message {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    animation: fadeout 4s forwards;
+}
+
+.warning-message {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background-color: #F7BCBC;
+    color: black;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    animation: fadeout 10s forwards;
+}
+
+/*  how an element fades away over time*/
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/*Adopted with love page*/
+.pet-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/*Adoption Board Page*/
+.filter-pet {
+    padding: 3px 3px;
+    color: #333333;
+}
+
+.filters {
+    text-align: left;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 222, 173, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, .2);
+    margin-bottom: 5px;
+}
+
+.filter-line {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.filter-line label {
+    font-weight: bolder;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.pet-card {
+    position: relative;
+    border-color: #2a2d27;
+    background-color: #e1cbaa;
+    padding: 15px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 5px 5px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.pet-card:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.pet-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 20px;
+    border-radius: 5px;
+}
+
+.pet-name {
+    font-weight: bold;
+    font-size: 110%;
+}
+
+
+.adopted-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, .2);
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #333333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.adopted-wrapper p {
+    font-size: 1.2rem;
+    color: #333333;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/*Pets page - board and myPets*/
+.detailed-pet-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    text-align: left;
+    line-height: 1.6;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, .8);
+    margin: 10px auto;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+    width: 800px;
+
+}
+
+.owner-details {
+    margin-top: 5px;
+    background: mediumpurple;
+    padding: 7px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.pet_left_col {
+    float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+.pet_right_col {
+    float: right;
+    margin-top: 10px;
+}
+
+.pet_under_col {
+    float: initial;
+    align-self: end;
+}
+
+.detailed-pet-card .pet-image {
+    float: left;
+    padding: 10px;
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+}
+
+.filter-line .input-field {
+    width: revert;
+}
+
+.filters .input-field {
+    margin-right: 15px;
+}
+
+/*important tags are intended to replace the primeFaces default css for the button */
+.close-btn.ui-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: black;
+    color: white;
+    border: none !important;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 50%;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+}
+
+.close-btn .ui-button-text {
+    padding: 0 !important;
+    margin: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: small;
+    text-align: center;
+}
+
+.close-btn.ui-button:hover {
+    background: white;
+    color: black;
+}
+
+.pet-long-description {
+    clear: both;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+/*making the pet card into a button*/
+.pet-card-button-link {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: black;
+    padding: 0;
+    cursor: pointer;
+}
+
+.pet-card-button-link:hover {
+    border-bottom: none;
+}
+
+.changePassword-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    text-align: center;
+    width: 500px
+}
+
+.contactus-wrapper {
+    background: rgba(255, 222, 173, 0.5);
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+    text-align: center;
+}
+
+.contactus-wrapper .form-input-box {
+    margin: 30px 0;
+}
+
+.addpet-wrapper .form-input-box {
+    margin: 20px 0;
+}
+
+.addpet-wrapper .button {
+    margin-top: 20px;
+}
+
+.pet-edit-field {
+    width: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    color: black;
+    margin-left: 5px;
+}
+
+.pet-list-scroll-wrapper {
+    margin-top: 30px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.editpet-wrapper {
+    width: 650px;
+    margin: 0 auto;
+    background: rgba(255, 222, 173, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+.editpet-wrapper .form-input-box {
+    align-items: unset;
+    margin: 20px 0;
+    height: unset;
+}
+
+.delete-pet-button {
+    background-color: darkred
+}
+
+#dateMessage {
+    margin-top: 5px;
+    height: 20px;
+    margin-bottom: 5px;
+}

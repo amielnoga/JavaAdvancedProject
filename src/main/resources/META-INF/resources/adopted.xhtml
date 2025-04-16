@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<!--Adopted with love page - displayong all pets found a home-->
+<f:metadata>
+    <f:event type="preRenderView" listener="#{PetBean.InitFilterRequestAdoptedTrue}"/>
+    <f:event type="preRenderView" listener="#{PetBean.getFilteredPets}"/>
+</f:metadata>
+<h:head>
+    <title>Adopet | Adopted with Love</title>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+    <div class="main-content">
+        <h3> Adopted with Love </h3>
+        <div class="adopted-wrapper">
+            <p> Every pet featured here has found a loving home, a place where they are cherished and cared for. <br/>
+                Thank you for being part of this journey—because every adoption is a story of love.</p>
+        </div>
+        <!--        Grid with all pets that were marked as adopted -->
+        <div class="pet-grid">
+            <ui:repeat value="#{PetBean.filteredData}" var="pet">
+                <div class="pet-card">
+                    <!--                    Displaying image, name, age, gender-->
+                    <img src="#{pet.imageUri}" alt="#{pet.shortDescription}" class="pet-image"/>
+                    <div class="pet-name">#{pet.name}</div>
+                    <div class="pet-name"> #{pet.adoptionDate}</div>
+                    <h:panelGroup rendered="#{pet.age ge 2}">
+                    <div class="pet-details">#{pet.age} years old</div>
+                </h:panelGroup>
+                    <h:panelGroup rendered="#{pet.age lt 2}">
+                        <div class="pet-details">#{pet.age} year old</div>
+                    </h:panelGroup>
+                    <div class="pet-details">#{pet.gender}</div>
+                </div>
+            </ui:repeat>
+        </div>
+    </div>
+
+    <!--footer-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

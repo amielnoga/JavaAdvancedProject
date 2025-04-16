@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- qaUserGuide.xhtml -->
+<!-- Display user guide for the q&a page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="QA User Guide" styleClass="title"/>
+
+    <h:outputText value="This article is for users who want to use Q&amp;A web page"/>
+    <h:graphicImage name="applicationScreenshots/questionsAndAnswersScreenshot.png" library="images"
+                    alt="Q&amp;A Screenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page you will find common questions and answers that users typically encounter."/>
+    <br/>
+    <h:outputText value="We hope you find this information helpful."/>
+    <br/>
+    <h:outputText value="If you haven't found the answer you're looking for, please visit the "/>
+    <h:outputLink value="contactUserGuide.xhtml">Contact Us</h:outputLink>
+    <h:outputText value=" section."/>
+</h:body>
+</html>

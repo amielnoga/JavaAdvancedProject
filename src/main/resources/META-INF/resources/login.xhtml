@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!--Log in page-->
+<h:head>
+    <title>Adopet | Login </title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link rel="icon" href="#{resource['images/logo_only.png']}" type="image/x-icon"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <h:messages id="flashMessages" layout="table" styleClass="success-message"
+                rendered="#{facesContext.maximumSeverity.ordinal eq 0}"/>
+    <h:messages id="flasMessages" layout="table" styleClass="warning-message"
+                rendered="#{facesContext.maximumSeverity.ordinal eq 1}"/>
+</h:head>
+
+<h:body>
+    <!--    navigation bar-->
+    <ui:include src="navbar.xhtml"/>
+    <div class="main-content">
+        <div class="login-wrapper">
+            <h:form id="loginForm">
+                <h3>Log in</h3>
+                <!--log in to the website with the username and password used in sign up-->
+                <div class="form-input-box">
+                    <h:inputText id="username"
+                                 value="#{UserBean.userName}"
+                                 required="true"
+                                 requiredMessage="User Name is required"
+                                 styleClass="input-field">
+                        <f:passThroughAttribute name="placeholder" value="User Name"/>
+                        <f:ajax event="blur" render="userNameMessage" execute="@this"/>
+                    </h:inputText>
+                    <i class='bx bxs-user'/>
+                    <h:message id="userNameMessage" for="username" styleClass="error-message"/>
+                </div>
+
+                <div class="form-input-box">
+                    <h:inputSecret id="password"
+                                   value="#{UserBean.password}"
+                                   required="true"
+                                   requiredMessage="Password is required"
+                                   styleClass="input-field">
+                        <f:passThroughAttribute name="placeholder" value="Password"/>
+                        <f:ajax event="blur" render="passwordMessage" execute="@this"/>
+                    </h:inputSecret>
+                    <i class='bx bxs-lock-alt'/>
+                    <h:message id="passwordMessage" for="password" styleClass="error-message"/>
+                </div>
+
+                <h:commandButton value="Login"
+                                 action="#{UserBean.login}"
+                                 styleClass="button"/>
+                <h:messages id="errorMessages" globalOnly="true" styleClass="error-message" layout="table"
+                            rendered="#{facesContext.maximumSeverity.ordinal ge 2}"/>
+                <div class="register-link">
+                    <p> Don't have an account?
+                        <h:outputLink value="signup.xhtml">Sign up</h:outputLink>
+                    </p>
+                </div>
+            </h:form>
+
+        </div>
+    </div>
+
+    <!--FooterFooter-->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

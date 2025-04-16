@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- userProfileUserGuide.xhtml -->
+<!-- Display user guide for the user profile page include screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documantion</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="User Profile User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to use the User Profile webpage."/>
+    <h:graphicImage name="applicationScreenshots/userProfileScreenshot.png" library="images"
+                    alt="userProfileScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you can view your personal account information and edit your details. When you finish editing,
+            don't forget to click on the Submit button!"/>
+    <br/>
+    <h:outputText value="The username field cannot be edited."/>
+    <br/>
+    <h:outputText value="You will also find links to add a new pet for adoption and access the My Pets webpage."/>
+    <br/>
+    <h:outputText value="Do you want to update your password? Click on Change password button"/>
+    <h:graphicImage name="applicationScreenshots/userProfileUpdatePasswordScreenshot.png" library="images"
+                    alt="userProfilePasswordScreenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="Don't forget to click on the Save Password button!"/>
+
+    <h:panelGroup rendered="#{UserBean.admin == true}">
+        <h:outputText value="This section visible only for Admin" styleClass="title"/>
+        <h:outputText value="Admin also find link to contact us requests."/>
+        <h:graphicImage name="applicationScreenshots/userProfileManagerScreenshot.png" library="images"
+                        alt="userProfileMangerViewScreenshot"
+                        styleClass="screenshot"/>
+        <h:outputText
+                value=""/>
+    </h:panelGroup>
+
+</h:body>
+</html>

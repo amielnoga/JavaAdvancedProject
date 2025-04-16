@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- boardUserGuide.xhtml -->
+<!-- Display user guide for the adoption board page, including screenshots-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Adopet Documentation</title>
+    <h:outputStylesheet library="css" name="styleDocumentation.css"/>
+</h:head>
+
+<h:body>
+    <ui:include src="/documentationNavbar.xhtml"/>
+    <h:outputText value="Adoption Board User Guide" styleClass="title"/>
+    <h:outputText value="This article is for users who want to use the Adoption Board web page."/>
+    <h:graphicImage name="applicationScreenshots/adoptionBoard1screenShot.png" library="images"
+                    alt="adoptionBoard1Screenshot"
+                    styleClass="screenshot"/>
+    <h:outputText value="On this page, you can search for your new pet! Perform a search using different parameters."/>
+    <br/>
+    <h:outputText
+            value="Found a pet that looks like your new best friend?  Click its picture to learn more and get in touch
+            with the owner for further details."/>
+    <h:graphicImage name="applicationScreenshots/adoptionBoard2screenShot.png" library="images"
+                    alt="adoptionBoard2Screenshot"
+                    styleClass="screenshot"/>
+
+    <h:panelGroup rendered="#{UserBean.admin == true}">
+        <h:outputText value="This section visible only for Admin" styleClass="title"/>
+        <h:graphicImage name="applicationScreenshots/adoptionBoardMangerViewScreenshot.png" library="images"
+                        alt="adoptionBoardMangerViewScreenshot"
+                        styleClass="screenshot"/>
+        <h:outputText
+                value="You can manage ads, if you find an inappropriate ad, you can delete it by clicking the trash icon."/>
+    </h:panelGroup>
+</h:body>
+
+</html>
