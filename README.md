@@ -20,7 +20,7 @@ This is a final project for the Open University CS course **20503 - Advanced Pro
   Add 'Path' var and and set the value to your Maven bin folder path, e.g "C:\Program Files\Apache\Maven\apache-maven-3.9.9\bin"
 #### Clone the Repository ####
    ```sh
-   git clone https://github.com/eitankot/JavaAdvencedProject.git
+   git clone https://github.com/amielnoga/JavaAdvencedProject.git
    cd JavaAdvencedProject
  ```
 #### Build the Project ####
